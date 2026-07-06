@@ -1,7 +1,5 @@
 # Obsidium SDK API Reference
 
-Short GitHub-friendly reference for the public C++ SDK API.
-
 ## Setup
 
 ### Requirements
