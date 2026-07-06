@@ -1,4 +1,19 @@
 #pragma once
+#pragma comment(lib, "obsidium-lib.lib")
+#pragma comment(lib, "libcurl.lib")
+#pragma comment(lib, "zs.lib")
+#pragma comment(lib, "libsodium.lib")
+
+#pragma comment(lib, "ws2_32.lib")
+#pragma comment(lib, "wldap32.lib")
+#pragma comment(lib, "crypt32.lib")
+#pragma comment(lib, "advapi32.lib")
+#pragma comment(lib, "user32.lib")
+#pragma comment(lib, "normaliz.lib")
+#pragma comment(lib, "secur32.lib")
+#pragma comment(lib, "iphlpapi.lib")
+#pragma comment(lib, "bcrypt.lib")
+
 
 #include <cstdint>
 #include <string>
