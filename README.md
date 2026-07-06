@@ -98,23 +98,7 @@ Go to:
 Configuration Properties > Linker > Input > Additional Dependencies
 ```
 
-Add:
-
-```text
-obsidium-lib.lib
-libcurl.lib
-libsodium.lib
-zs.lib
-ws2_32.lib
-wldap32.lib
-crypt32.lib
-advapi32.lib
-user32.lib
-normaliz.lib
-secur32.lib
-iphlpapi.lib
-bcrypt.lib
-```
+No manual dependency list is required when using the provided SDK header and library. The required MSVC linker pragmas are included by the SDK.
 
 Set the C++ language standard:
 
