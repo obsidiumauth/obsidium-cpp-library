@@ -4,6 +4,135 @@ Short GitHub-friendly reference for the public C++ SDK API.
 
 ## Setup
 
+### Requirements
+
+- Visual Studio with Desktop development with C++ installed.
+- An x64 MSVC application project.
+- C++20 enabled.
+- vcpkg installed to `C:\vcpkg`.
+
+### Install vcpkg
+
+Open PowerShell and install vcpkg to the `C:\` drive:
+
+```powershell
+cd C:\
+
+git clone https://github.com/microsoft/vcpkg.git
+cd C:\vcpkg
+
+.\bootstrap-vcpkg.bat
+.\vcpkg.exe integrate install
+```
+
+Install the required static x64 packages:
+
+```powershell
+C:\vcpkg\vcpkg.exe install curl:x64-windows-static
+C:\vcpkg\vcpkg.exe install libsodium:x64-windows-static
+C:\vcpkg\vcpkg.exe install nlohmann-json:x64-windows-static
+C:\vcpkg\vcpkg.exe install zlib:x64-windows-static
+```
+
+Or install them in one command:
+
+```powershell
+C:\vcpkg\vcpkg.exe install curl:x64-windows-static libsodium:x64-windows-static nlohmann-json:x64-windows-static zlib:x64-windows-static
+```
+
+### Add Obsidium Files
+
+Add these files to your application project folder, or place them in directories that your project includes and links against:
+
+```text
+obsidium.hpp
+obsidium-lib.lib
+```
+
+If your application uses `skCrypt` for its own strings, also add:
+
+```text
+skcrypt.h
+```
+
+### Configure Visual Studio
+
+In your application project properties, select:
+
+```text
+Configuration: Release
+Platform: x64
+```
+
+Go to:
+
+```text
+Configuration Properties > C/C++ > General > Additional Include Directories
+```
+
+Add:
+
+```text
+C:\vcpkg\installed\x64-windows-static\include
+```
+
+Also add the directory that contains `obsidium.hpp` if it is not already part of your project include path.
+
+Go to:
+
+```text
+Configuration Properties > Linker > General > Additional Library Directories
+```
+
+Add:
+
+```text
+C:\vcpkg\installed\x64-windows-static\lib
+```
+
+Also add the directory that contains `obsidium-lib.lib`.
+
+Go to:
+
+```text
+Configuration Properties > Linker > Input > Additional Dependencies
+```
+
+Add:
+
+```text
+obsidium-lib.lib
+libcurl.lib
+libsodium.lib
+zs.lib
+ws2_32.lib
+wldap32.lib
+crypt32.lib
+advapi32.lib
+user32.lib
+normaliz.lib
+secur32.lib
+iphlpapi.lib
+bcrypt.lib
+```
+
+Set the C++ language standard:
+
+```text
+Configuration Properties > C/C++ > Language > C++ Language Standard
+ISO C++20 Standard
+```
+
+Debug builds usually use these vcpkg library names instead:
+
+```text
+libcurl-d.lib
+libsodium.lib
+zsd.lib
+```
+
+### Include The SDK
+
 ```cpp
 #include "obsidium.hpp"
 ```
